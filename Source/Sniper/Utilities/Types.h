@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GenericPlatform/GenericPlatformMath.h"
+#include "Types.generated.h"
 
-/*
 USTRUCT(BlueprintType)
 struct FFloatWLimits
 {
@@ -17,26 +18,37 @@ struct FFloatWLimits
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float fMax;
 
-	FFloatWLimits();
-	FFloatWLimits(float _fCurrent, float _fMin, float _fMax);
-	
-	//UFUNCTION(BlueprintCallable)
-	void Add(float _fValue);
-	//UFUNCTION(BlueprintCallable)
-	void Remove(float _fValue);
-	//UFUNCTION(BlueprintCallable)
-	void Set(float _fValue);
-	//UFUNCTION(BlueprintCallable)
-	float Get();
-	//UFUNCTION(BlueprintCallable)
-	void SetMax(float _fValue);
-	//UFUNCTION(BlueprintCallable)
-	float GetMax();
-	//UFUNCTION(BlueprintCallable)
-	void SetMin(float _fValue);
-	//UFUNCTION(BlueprintCallable)
-	float GetMin();
-	
+	FFloatWLimits() : fCurrent(0.f), fMin(0.f), fMax(0.f) {}
+	FFloatWLimits(float _fCurrent, float _fMin, float _fMax) : fCurrent(_fCurrent), fMin(_fMin), fMax(_fMax) {}
+
+	void Add(float _fValue) { fCurrent = FGenericPlatformMath::Min<float>(fCurrent + _fValue, fMax); }
+	void Remove(float _fValue) { fCurrent = FGenericPlatformMath::Max<float>(fCurrent - _fValue, fMin); }
+	void Set(float _fValue) 
+	{
+		if (_fValue < fMin) fCurrent = fMin;
+		else if (_fValue > fMax) fCurrent = fMax;
+		else fCurrent = _fValue;
+	}
+	void SetMax(float _fValue) 
+	{
+		fMax = _fValue;
+		if (fMin > fMax)
+		{
+			SetMin(_fValue);
+			fCurrent = _fValue;
+		}
+		else fCurrent = FGenericPlatformMath::Min<float>(fCurrent, fMax);
+	}
+	void SetMin(float _fValue) 
+	{
+		fMin = _fValue;
+		if (fMax < fMin)
+		{
+			SetMax(_fValue);
+			fCurrent = _fValue;
+		}
+		else fCurrent = FGenericPlatformMath::Max<float>(fCurrent, fMin);
+	}
 };
 
 USTRUCT(BlueprintType)
@@ -51,74 +63,40 @@ struct FIntWLimits
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int iMax;
 
-	FIntWLimits();
-	FIntWLimits(int _iCurrent, float _iMin, float _iMax);
-	
-	//UFUNCTION(BlueprintCallable)
-	void Add(int _iValue);
-	//UFUNCTION(BlueprintCallable)
-	void Remove(int _iValue);
-	//UFUNCTION(BlueprintCallable)
-	void Set(int _iValue);
-	//UFUNCTION(BlueprintCallable)
-	int Get();
-	//UFUNCTION(BlueprintCallable)
-	void SetMax(int _iValue);
-	//UFUNCTION(BlueprintCallable)
-	int GetMax();
-	//UFUNCTION(BlueprintCallable)
-	void SetMin(int _iValue);
-	//UFUNCTION(BlueprintCallable)
-	int GetMin();
-	
+	FIntWLimits() : iCurrent(0), iMin(0), iMax(0) {}
+	FIntWLimits(int _iCurrent, float _iMin, float _iMax) : iCurrent(_iCurrent), iMin(_iMin), iMax(_iMax) {}
+
+	void Add(int _iValue) { iCurrent = FGenericPlatformMath::Min<int>(iCurrent + _iValue, iMax);  }
+	void Subtract(int _iValue) { iCurrent = FGenericPlatformMath::Max<int>(iCurrent - _iValue, iMin); }
+	void Set(int _iValue)
+	{
+		if (_iValue < iMin) iCurrent = iMin;
+		else if (_iValue > iMax) iCurrent = iMax;
+		else iCurrent = _iValue;
+	}
+	void SetMax(int _iValue)
+	{
+		iMax = _iValue;
+		if (iMin > iMax)
+		{
+			SetMin(_iValue);
+			iCurrent = _iValue;
+		}
+		else iCurrent = FGenericPlatformMath::Min<int>(iCurrent, iMax);
+	}
+	void SetMin(int _iValue)
+	{
+		iMin = _iValue;
+		if (iMax < iMin)
+		{
+			SetMax(_iValue);
+			iCurrent = _iValue;
+		}
+		else iCurrent = FGenericPlatformMath::Max<int>(iCurrent, iMin);
+	}
 };
-*/
+
 /*
-* //Testing for templating structs instead of particular types
-template <typename T>
-struct NumberWLimits
-{
-	T Current, Min, Max;
-	NumberWLimits(T _tCurrent, T _tMin, T _tMax) : Current(_tCurrent), Min(_tMin), Max(_tMax) {}
-
-	inline void Add(T _tValue)
-	{
-		Current += _tValue;
-		if (Current > Max) Current = Max;
-	}
-
-	inline void Remove(T _tValue)
-	{
-		Current -= _tValue;
-		if (Current < Min) Current = Min;
-	}
-
-	inline void Set(T _tValue) { Current = _tValue; }
-	inline T Get() { return Current; }
-	
-	inline void SetMax(T _tValue) 
-	{	//Precondition: Must have a higher or equal value than the Minimum
-		if (_tValue >= Min)
-		{
-			Max = _tValue;
-			if (Current > Max) Current = Max;
-		}
-	}
-	inline T GetMax() { return Max; }
-
-	inline void SetMin(T _tValue)
-	{	//Precondition: Must have a lower or equal value than the Maximum
-		if (_tValue <= Max)
-		{
-			Min = _tValue;
-			if (Current < Min) Current = Min;
-		}
-	}
-	inline T GetMin() { return Min; }
-
-};
-
-
 
 class SNIPER_API Types
 {
