@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameCharacterStats.h"
+//#include "../../Utilities/Types.h"
 #include "PlayerCharacterStats.generated.h"
 
 /**
@@ -46,4 +47,5 @@ class SNIPER_API UPlayerCharacterStats : public UGameCharacterStats
 			void SetBullets(int _iValue);
 		UFUNCTION(BlueprintCallable)
 			int GetBullets();
+
 };

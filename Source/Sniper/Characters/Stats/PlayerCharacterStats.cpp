@@ -3,6 +3,8 @@
 
 #include "PlayerCharacterStats.h"
 
+
+
 UPlayerCharacterStats::UPlayerCharacterStats()
 {
 	m_iLifes = 0;

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 /*
 USTRUCT(BlueprintType)
 struct FFloatWLimits
@@ -16,26 +17,64 @@ struct FFloatWLimits
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float fMax;
 
-	UPROPERTY(BlueprintCallable)
-		void Add(float _fValue);
-	UPROPERTY(BlueprintCallable)
-		void Remove(float _fValue);
-	UPROPERTY(BlueprintCallable)
-		void Set(float _fValue);
-	UPROPERTY(BlueprintCallable)
-		float Get();
-	UPROPERTY(BlueprintCallable)
-		void SetMax(float _fValue);
-	UPROPERTY(BlueprintCallable)
-		float GetMax();
-	UPROPERTY(BlueprintCallable)
-		void SetMin(float _fValue);
-	UPROPERTY(BlueprintCallable)
-		float GetMin();
+	FFloatWLimits();
+	FFloatWLimits(float _fCurrent, float _fMin, float _fMax);
+	
+	//UFUNCTION(BlueprintCallable)
+	void Add(float _fValue);
+	//UFUNCTION(BlueprintCallable)
+	void Remove(float _fValue);
+	//UFUNCTION(BlueprintCallable)
+	void Set(float _fValue);
+	//UFUNCTION(BlueprintCallable)
+	float Get();
+	//UFUNCTION(BlueprintCallable)
+	void SetMax(float _fValue);
+	//UFUNCTION(BlueprintCallable)
+	float GetMax();
+	//UFUNCTION(BlueprintCallable)
+	void SetMin(float _fValue);
+	//UFUNCTION(BlueprintCallable)
+	float GetMin();
+	
+};
+
+USTRUCT(BlueprintType)
+struct FIntWLimits
+{
+	GENERATED_USTRUCT_BODY();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int iCurrent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int iMin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int iMax;
+
+	FIntWLimits();
+	FIntWLimits(int _iCurrent, float _iMin, float _iMax);
+	
+	//UFUNCTION(BlueprintCallable)
+	void Add(int _iValue);
+	//UFUNCTION(BlueprintCallable)
+	void Remove(int _iValue);
+	//UFUNCTION(BlueprintCallable)
+	void Set(int _iValue);
+	//UFUNCTION(BlueprintCallable)
+	int Get();
+	//UFUNCTION(BlueprintCallable)
+	void SetMax(int _iValue);
+	//UFUNCTION(BlueprintCallable)
+	int GetMax();
+	//UFUNCTION(BlueprintCallable)
+	void SetMin(int _iValue);
+	//UFUNCTION(BlueprintCallable)
+	int GetMin();
+	
 };
 */
-
-
+/*
+* //Testing for templating structs instead of particular types
 template <typename T>
 struct NumberWLimits
 {
@@ -80,9 +119,11 @@ struct NumberWLimits
 };
 
 
+
 class SNIPER_API Types
 {
 public:
 	Types();
 	~Types();
 };
+*/
