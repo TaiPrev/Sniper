@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Types.generated.h"
 
-/*
 USTRUCT(BlueprintType)
 struct FFloatWLimits
 {
@@ -17,9 +17,27 @@ struct FFloatWLimits
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float fMax;
 
-	FFloatWLimits();
-	FFloatWLimits(float _fCurrent, float _fMin, float _fMax);
-	
+	FFloatWLimits() : fCurrent(0.f), fMin(0.f), fMax(0.f) {}
+	FFloatWLimits(float _fCurrent, float _fMin, float _fMax) : fCurrent(_fCurrent), fMin(_fMin), fMax(_fMax) {}
+};
+
+USTRUCT(BlueprintType)
+struct FIntWLimits
+{
+	GENERATED_USTRUCT_BODY();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int iCurrent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int iMin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int iMax;
+
+	FIntWLimits() : iCurrent(0), iMin(0), iMax(0) {}
+	FIntWLimits(int _iCurrent, float _iMin, float _iMax) : iCurrent(_iCurrent), iMin(_iMin), iMax(_iMax) {}
+};
+
+/*
 	//UFUNCTION(BlueprintCallable)
 	void Add(float _fValue);
 	//UFUNCTION(BlueprintCallable)
@@ -72,8 +90,7 @@ struct FIntWLimits
 	int GetMin();
 	
 };
-*/
-/*
+
 * //Testing for templating structs instead of particular types
 template <typename T>
 struct NumberWLimits
