@@ -18,10 +18,7 @@ public:
 	// Sets default values for this component's properties
 	UGameCharacterStats();
 
-	//DELEGATES//
-	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "General | EventDispatchers", meta = (DisplayName = "On Character Death Delegate"))
-		FOnCharacterDeath EOnCharacterDeathDelegate;
-
+	//Dynamic Data
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Float With Limit Stats"))
 		TMap<FString, FFloatWLimits> m_mFloatWLimitStats;
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Integer With Limit Stats"))
@@ -30,6 +27,11 @@ public:
 		TMap<FString, float> m_mFloatStats;
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Integer With Limit Stats"))
 		TMap<FString, int> m_mIntStats;
+
+	//DELEGATES//
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "General | EventDispatchers", meta = (DisplayName = "On Character Death Delegate"))
+		FOnCharacterDeath EOnCharacterDeathDelegate;
+
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Is Alive"))
