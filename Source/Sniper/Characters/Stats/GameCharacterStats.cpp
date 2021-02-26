@@ -7,8 +7,12 @@
 UGameCharacterStats::UGameCharacterStats()
 {
 	PrimaryComponentTick.bCanEverTick = false;
-
 	m_bIsAlive = true;
+
+	m_mFloatWLimitStats = TMap<FString, FFloatWLimits>();
+	m_mIntWLimitStats = TMap<FString, FIntWLimits>();
+	m_mFloatStats = TMap<FString, float>();
+	m_mIntStats = TMap<FString, int>();
 }
 
 

@@ -17,10 +17,10 @@ class SNIPER_API APlayerCharacter : public AGameCharacter
 	public:
 		APlayerCharacter();
 
-		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Info", meta = (DisplayName = "Stats Component"))
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Info", meta = (DisplayName = "Stats Component"))
 			class UPlayerCharacterStats* m_statsComponent;
 
-		UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		UPROPERTY(BlueprintReadWrite, Category = Mesh)
 			USkeletalMeshComponent* m_pGunMesh;
 
 	public:

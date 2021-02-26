@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "../../Utilities/Types.h"
 #include "GameCharacterStats.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCharacterDeath);
@@ -17,9 +18,20 @@ public:
 	// Sets default values for this component's properties
 	UGameCharacterStats();
 
+	//Dynamic Data
+	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Float With Limit Stats"))
+		TMap<FString, FFloatWLimits> m_mFloatWLimitStats;
+	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Integer With Limit Stats"))
+		TMap<FString, FIntWLimits> m_mIntWLimitStats;
+	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Float With Limit Stats"))
+		TMap<FString, float> m_mFloatStats;
+	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Dynamic Integer With Limit Stats"))
+		TMap<FString, int> m_mIntStats;
+
 	//DELEGATES//
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "General | EventDispatchers", meta = (DisplayName = "On Character Death Delegate"))
 		FOnCharacterDeath EOnCharacterDeathDelegate;
+
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Is Alive"))
