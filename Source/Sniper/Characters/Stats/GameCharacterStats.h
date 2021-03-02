@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -34,6 +32,8 @@ public:
 
 
 protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Player", meta = (DisplayName = "Lives"))
+		FIntWLimits m_Lives;
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Is Alive"))
 		bool m_bIsAlive;
 

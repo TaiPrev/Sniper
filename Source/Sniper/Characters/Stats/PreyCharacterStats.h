@@ -1,14 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameCharacterStats.h"
 #include "PreyCharacterStats.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class SNIPER_API UPreyCharacterStats : public UGameCharacterStats
 {
