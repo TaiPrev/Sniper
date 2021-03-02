@@ -32,6 +32,8 @@ public:
 
 
 protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Player", meta = (DisplayName = "Lives"))
+		FIntWLimits m_Lives;
 	UPROPERTY(EditDefaultsOnly, Category = "General", meta = (DisplayName = "Is Alive"))
 		bool m_bIsAlive;
 

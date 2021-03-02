@@ -1,12 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "GameCharacter.h"
 
 // Sets default values
 AGameCharacter::AGameCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_pMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh"));
